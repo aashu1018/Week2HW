@@ -3,6 +3,7 @@ package com.springbootwebassignment.Week2.Controllers;
 import com.springbootwebassignment.Week2.DTOs.DepartmentDTO;
 import com.springbootwebassignment.Week2.Exceptions.ResourceNotFoundException;
 import com.springbootwebassignment.Week2.Services.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +35,13 @@ public class DepartmentController {
     }
 
     @PostMapping
-    public ResponseEntity<DepartmentDTO> createNewDepartment(@RequestBody DepartmentDTO inputDept){
+    public ResponseEntity<DepartmentDTO> createNewDepartment(@RequestBody @Valid DepartmentDTO inputDept){
         DepartmentDTO departmentDTO = departmentService.createNewDepartment(inputDept);
         return new ResponseEntity<>(departmentDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/{departmentId}")
-    public ResponseEntity<DepartmentDTO> updateDepartmentById(@RequestBody DepartmentDTO inputDept,
+    public ResponseEntity<DepartmentDTO> updateDepartmentById(@RequestBody @Valid DepartmentDTO inputDept,
                                                               @PathVariable Long departmentId){
         return ResponseEntity.ok(departmentService.updateDepartmentById(inputDept, departmentId));
     }

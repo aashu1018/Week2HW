@@ -27,6 +27,10 @@ public class DepartmentEntity {
     @JsonProperty("isActive")
     private Boolean isActive;
 
+    private String password;
+
+    private Integer checkPrime;
+
     @JsonFormat(pattern = "hh:mm:ss dd-MM-yyyy")
     private LocalDateTime createdAt;
 
